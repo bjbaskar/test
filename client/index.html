@@ -1,0 +1,75 @@
+<!doctype html>
+<!--
+/*
+* ===============================
+* Author  : Baskaran, Balaganesan ( 1399488 )
+* Title   : Single Column Risk Hierarchy Tree view structure (POC)
+* ===============================
+*/ -->
+<html lang="en" ng-app="myApp">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="vendor/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
+    <link href="css/risktreeview.css" rel="stylesheet" type="text/css" />
+
+ <body ng-controller="treeCtrl">
+	
+
+ 	<!-- Top Bar -->
+	<nav role="navigation" class="navbar navbar-default topbg">
+        <div class="main-container">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle"
+                    ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                    <span class="sr-only">GMR</span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand" 
+                style="margin-top: 0px; padding-top: 0px;">
+                	<img src="img/scblogo.png" alt=" Logo" width="80">
+                    <span class="gmr-logo">GMR</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+ 	<!-- top header ends here -->
+
+	<div class="container-fluid">
+        <div class="row">
+            <h2>Risk Hierarchy Tree <small>Directive element <mark>(POC)</mark></small></h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <button class="btn btn-success active" style="text-align:right" ng-click="sRiskNodes()">Get Selected Nodes</button>
+                        <a href="riskTree.html" class="pull-right">Tree-POC2</a>
+                    </div>
+                    <div class="panel-body" style="min-height:350px; overflow-x:scroll;
+                            overflow-y:scroll; white-space:nowrap; !important;width:100%;">
+                        <risk-tree collection='treeData' getnodeid="setRiskNodes(sNodes)">
+                            <div class="alert alert-info" role="alert">
+                              Loading Hierarchy. Please wait...
+                            </div>
+                        </risk-tree>
+                    </div>
+                </div>
+                </div>
+
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="alert alert-info" role="alert">
+                      Selected Hierarchy Nodes are...
+                    </div>
+                    <textarea ng-readonly="true" class="form-control" rows="3" cols="2" style="min-height:300px">{{SelectedNodes}}</textarea>
+                </div>
+            </div>
+        </div>
+	</div>
+ 	<script src="vendor/angular.js"></script>
+    <script src="vendor/angular-animate.js"></script>
+    <script src="common/tree-app.js"></script>
+ </body>
+</html>
