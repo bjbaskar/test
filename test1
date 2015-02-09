@@ -1,0 +1,83 @@
+1. Modal change
+<button type="button" class="btn btn-primary dropdown-toggle"
+ng-click="open()">
+Button dropdown <span class="caret"></span>
+</button>
+==================================================
+ <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+==================================================
+Include= $modal********
+ $scope.items = ['item1', 'item2', 'item3'];
+    $scope.open = function (size) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            size: size,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+    }
+==================================================	
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});	
+==================================================	
+2. route nav change
+<base href="/bjbhome/" />
+
+app.config(function ($routeProvider, $locationProvider) {
+    //
+    $routeProvider
+        .when('/', {
+            templateUrl: 'home.html'
+        })
+         .when('/about', {
+             templateUrl: 'home.html#about'
+         })
+         .when('/spl', {
+             templateUrl: 'home.html#spl'
+         })
+        .otherwise({ redirectTo: '/' });
+        //.otherwise({ redirectTo: 'index.html' });
+   
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
+});
+==================================================	
+3. sticky header
+https://github.com/d-oliveros/ngSticky
+<div  style="z-index:100" sticky>
+==================================================	
+4. Parallax design CSS
+http://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
+==================================================	
